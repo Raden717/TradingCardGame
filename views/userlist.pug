@@ -1,0 +1,10 @@
+html
+	head
+		title List of Users
+	body
+		if users.length > 0
+			each user in users
+				a(href="/users/" + user.username)= user.username
+				br
+		else
+			p There are currently no products stored in the database.

@@ -1,0 +1,80 @@
+html
+  head
+    title #{user.username}
+  body
+    form(action="/users/" + user["_id"], method="POST")
+      |Account: #{user.username}
+      br
+      br
+      a(href = '/logout')  Log out
+      br
+      br
+      strong Cards:
+      br
+      br
+      each card in user.cards
+        |Name:  #{card.name}
+        br
+        |Attack:  #{card.attack}
+        br
+        |Class: #{card.cardClass}
+        br
+        |Health:  #{card.health}
+        br
+        |Artist:  #{card.artist}
+        br
+        br
+      br
+      strong Friends:
+      br
+      br
+      each friend in friendships
+        |#{friend} |
+        a(href='/users/' + friend)  Cards |
+        a(href='/trade/' + friend)  Trade |
+        br
+      br
+    form(action="/search", method="POST")
+      |Search for a friend:
+      input#id(type="textbox" name="searchbar")
+      button(type="submit") Search
+    br
+    |Pending Friend Requests
+    br
+    each request in requests
+      |#{request.requestFROM}
+      form(action="/answerfriend", method="POST")
+        input(type="hidden" name="friendshipID" value=request._id)
+        |Add
+        input(type='radio', name='choice', value='1')
+        br
+        |Reject
+        input(type='radio', name='choice', value='2')
+        br
+        button(type="submit") Submit
+        br
+    br
+    |Pending Trade Requests
+    br
+    each trade in trades
+      |#{trade.requestFROM}
+      br
+      strong Offering:
+      |#{trade.cardOFFER}
+      br
+      strong For:
+      |#{trade.cardRECEIVE}
+      form(action="/tradeANSWER", method="POST")
+        input(type="hidden" name="userOffering" value=trade.requestFROM)
+        input(type="hidden" name="userRespond" value=trade.requestTO)
+        input(type="hidden" name="tradeID" value=trade._id)
+        input(type="hidden" name="cardoffer" value=trade.cardOFFER)
+        input(type="hidden" name="cardreceive" value=trade.cardRECEIVE)
+        |Accept
+        input(type='radio', name='choiceT', value='1')
+        br
+        |Reject
+        input(type='radio', name='choiceT', value='2')
+        br
+        button(type="submit") Submit
+        br

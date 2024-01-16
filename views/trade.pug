@@ -1,0 +1,34 @@
+html
+  head
+    title #{user.username}
+  body
+
+    form(action="/trade", method="POST")
+      input(type="hidden" name="user" value=user.username)
+      input(type="hidden" name="user2" value=user2.username)
+      strong Offer One of Your Cards
+      br
+      each card in user.cards
+        |Name:  #{card.name}
+        input(type='radio', name='offer', value=card.name)
+        br
+        br
+      br
+
+      strong Currently requesting a Trade with:
+      |#{user2.username}
+      br
+
+      br
+      strong Choose a card you'd like to trade for
+      br
+
+      each card in user2.cards
+        |Name:  #{card.name}
+        input(type='radio', name='receive', value=card.name)
+        br
+        br
+      button(type="submit") Offer Trade
+      br
+      br
+      a(href = '/') Return to profile

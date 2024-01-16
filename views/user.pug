@@ -1,0 +1,25 @@
+html
+  head
+    title #{user.name}
+  body
+      a(href = '/') Return to profile
+      br
+      br
+      |Username: #{user.username}
+      br
+      br
+      |Cards:
+      br
+      br
+      each card in user.cards
+        |Name:  #{card.name}
+        br
+        |Attack:  #{card.attack}
+        br
+        |Class: #{card.cardClass}
+        br
+        |Health:  #{card.health}
+        br
+        |Artist:  #{card.artist}
+        br
+        br

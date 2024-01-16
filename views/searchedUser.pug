@@ -1,0 +1,18 @@
+html
+  head
+    title #{user.username}
+  body
+    form(action="/addfriend", method="POST")
+      |Username: #{user.username}
+      input(type="hidden" name="username" value=user.username)
+      br
+      br
+      |Cards:
+      br
+      br
+      each card in user.cards
+        |Name:  #{card.name}
+        br
+      button(type="submit") Add Friend
+    br
+    a(href = '/') Return to profile

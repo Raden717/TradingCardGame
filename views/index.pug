@@ -1,0 +1,23 @@
+html
+  head
+    title Home
+  body
+    |Please register or login before proceeding
+    br
+    br
+    form(action="/register" , method="POST")
+      |Username:
+      input#id(type="textbox" name="username")
+      br
+      |Password:
+      input#id(type="textbox" name="password")
+      br
+      button(type="submit") Register
+    form(action="/login" , method="POST")
+      |Username:
+      input#id(type="textbox" name="username")
+      br
+      |Password:
+      input#id(type="password" name="password")
+      br
+      button(type="submit") Login
